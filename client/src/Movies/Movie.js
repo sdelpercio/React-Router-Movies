@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import {useParams} from 'react-router-dom';
 import axios from 'axios';
 
-const Movie = ({movies}) => {
+const Movie = (props) => {
   // Setting up state for individual movie
   const [movie, setMovie] = useState();
- 
+  console.log("these are the props", props);
+
   // Finding correct movieID 
-  const movieID = useParams();
-  console.log("here is movieID", movieID);
-  const aMovie = movies.find(item => movieID === `${item.id}`);
-  console.log("here is aMovie", aMovie);
+  const { movieID } = useParams();
+  // console.log("here is the dynamic route", movieID);
+  // const aMovie = props.movies.find(item => item.id === Number(movieID));
+  
+  // console.log("aMovie", aMovie.id);
 
   // Getting data for individual movie
   useEffect(() => {
@@ -18,16 +20,16 @@ const Movie = ({movies}) => {
     // You will NEED to add a dependency array to this effect hook
 
        axios
-        .get(`http://localhost:5000/api/movies/${aMovie.id}`)
+        .get(`http://localhost:5000/api/movies/${movieID}`)
         .then(response => {
-          console.log(response);
+          console.log("response", response);
           setMovie(response.data);
         })
         .catch(error => {
           console.error(error);
         });
 
-  },[aMovie]);
+  },[movieID]);
   
   // Uncomment this only when you have moved on to the stretch goals
   // const saveMovie = () => {

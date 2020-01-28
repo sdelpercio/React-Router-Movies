@@ -6,7 +6,7 @@ const MovieList = ({movies}) => {
   return (
     <div className="movie-list">
       {movies.map(movie => (
-        <Link key={movie.id} to={`/movie/${movie.id}`}>
+        <Link key={movie.id} to={`/movies/${movie.id}`}>
           <MovieDetails movie={movie} />
         </Link>
       ))}
