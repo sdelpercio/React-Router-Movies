@@ -1,5 +1,5 @@
 import React from 'react';
-import {useHistory} from 'react-router-dom';
+import {useHistory, Link} from 'react-router-dom';
 
 const SavedList = props => {
   // Setting up function to return to home page
@@ -12,7 +12,7 @@ const SavedList = props => {
     <div className="saved-list">
       <h3>Saved Movies:</h3>
         {props.list.map(movie => (
-          <span className="saved-movie">{movie.title}</span>
+          <Link to={`/movies/${movie.id}`} className="saved-movie">{movie.title}</Link>
         ))}
     <div onClick={goHome} className="home-button">Home</div>
   </div>
